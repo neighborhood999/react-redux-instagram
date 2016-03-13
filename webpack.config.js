@@ -19,15 +19,17 @@ module.exports = {
         NODE_ENV: JSON.stringify('development'),
       },
     }),
+    new webpack.ProvidePlugin({
+      fetch: 'imports?this=>global!exports?global.fetch!fetch-jsonp',
+    }),
   ],
   resolve: {
     extensions: ['', '.js'],
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
-      exclude: /node_modules/,
-    }],
+    loaders: [
+      { test: /\.js$/, loaders: ['babel'], exclude: /node_modules/ },
+      { test: /\.css$/, loaders: ['style-loader', 'css-loader'] },
+    ],
   },
 };
