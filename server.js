@@ -1,11 +1,12 @@
 /* eslint no-console: 0 */
+
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const cookieParser = require('cookie-parser');
 const config = require('./webpack.config');
-const authUser = require('./Auth/auth');
-const handleAuth = require('./Auth/handleAuth');
+const authUser = require('./helper/auth');
+const handleAuth = require('./helper/handleAuth');
 const port = process.env.PORT || 3000;
 
 const app = express();
