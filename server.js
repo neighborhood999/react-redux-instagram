@@ -5,7 +5,7 @@ const express = require('express');
 const webpack = require('webpack');
 const cookieParser = require('cookie-parser');
 const config = require('./webpack.config');
-const authUser = require('./helper/auth');
+const auth = require('./helper/auth');
 const handleAuth = require('./helper/handleAuth');
 const port = process.env.PORT || 3000;
 
@@ -20,17 +20,10 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 app.use(require('webpack-hot-middleware')(compiler));
 app.use(cookieParser());
-app.use('/authUser', authUser);
+app.use('/auth', auth);
 app.use('/handleAuth', handleAuth);
 
 app.get('*', (req, res) => {
-  const accssToken = req.cookies.authSuccess;
-
-  if (!accssToken) {
-    res.redirect('/authUser');
-    return;
-  }
-
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 

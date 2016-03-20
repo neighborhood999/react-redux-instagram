@@ -1,17 +1,25 @@
-/* eslint no-console: 0 */
-const apiConfig = require('./apiConfig');
+const request = require('request');
 
 function handleAuth(req, res) {
-  return apiConfig.api.authorize_user(req.query.code, apiConfig.redirectURI, (err, result) => {
-    if (err) {
-      console.log(err.body);
-      res.send('error');
-    } else {
-      console.log(`Access Token: ${result.access_token}`);
-      res.cookie('authSuccess', result.access_token, { maxAge: 900000 });
-      res.redirect('/');
-    }
+  const code = req.query.code;
+
+  if (!code) {
+    res.redirect('https://api.instagram.com/oauth/authorize/?client_id=52d1f7d9282a42f59e1c36f013acf974&redirect_uri=http://localhost:3000/handleAuth&response_type=code&scope=likes+comments+relationships');
+    return;
+  }
+
+  const url = 'https://api.instagram.com/oauth/access_token';
+  const form = {
+    'client_id': '52d1f7d9282a42f59e1c36f013acf974',
+    'client_secret': 'bc997656dd2f4149a70897cf67ef9464',
+    'grant_type': 'authorization_code',
+    'redirect_uri': 'http://localhost:3000/handleAuth',
+    'code': code,
+  };
+  request.post({ url, form }, (err, httpResponse, body) => {
+    console.log(`${httpResponse} and body: ${body}`);
   });
+  res.redirect('/');
 }
 
 module.exports = handleAuth;
