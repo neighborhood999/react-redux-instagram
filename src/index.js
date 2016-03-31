@@ -6,7 +6,8 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './store/configureStore';
 import './stylesheets/css/style.css';
 
-const store = configureStore();
+const initialState = window.__INITIAL_STATE__;
+const store = configureStore(initialState);
 const history = syncHistoryWithStore(browserHistory, store);
 
 if (process.env.NODE_ENV === 'development') {

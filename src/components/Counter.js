@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 
 export default class Counter extends Component {
   static propTypes = {
@@ -22,6 +23,8 @@ export default class Counter extends Component {
         <button onClick={incrementIfOdd}>Increment if odd</button>
         {' '}
         <button onClick={() => incrementAsync()}>Increment async</button>
+        {' '}
+        <Link to="/">Back Home</Link>
       </p>
     );
   }

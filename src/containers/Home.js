@@ -6,6 +6,7 @@ export default class Home extends Component {
     return (
       <div>
         <h1>Reactjs x Redux - Instagram</h1>
+        <Link to="/counter">Counter Page</Link>
       </div>
     );
   }

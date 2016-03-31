@@ -1,12 +1,11 @@
 /* eslint no-console: 0 */
 
+require('babel-register');
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
-const cookieParser = require('cookie-parser');
 const config = require('./webpack.config');
-const auth = require('./helper/auth');
-const handleAuth = require('./helper/handleAuth');
+const init = require('./helper/init');
 const port = process.env.PORT || 3000;
 
 const app = express();
@@ -19,17 +18,11 @@ app.use(require('webpack-dev-middleware')(compiler, {
   },
 }));
 app.use(require('webpack-hot-middleware')(compiler));
-app.use(cookieParser());
-app.use('/auth', auth);
-app.use('/handleAuth', handleAuth);
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+app.use(init);
 
 app.listen(port, 'localhost', (err) => {
   if (err) {
-    console.log(err);
+    console.error(err);
     return;
   }
 

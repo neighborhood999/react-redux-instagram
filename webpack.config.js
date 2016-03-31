@@ -20,7 +20,7 @@ module.exports = {
       },
     }),
     new webpack.ProvidePlugin({
-      fetch: 'imports?this=>global!exports?global.fetch!fetch-jsonp',
+      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
     }),
   ],
   resolve: {
@@ -28,8 +28,9 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.js$/, loaders: ['babel'], exclude: /node_modules/ },
+      { test: /\.js$/, loader: 'babel', exclude: /node_modules/, query: { presets: ['react-hmre'] } },
       { test: /\.css$/, loaders: ['style-loader', 'css-loader'] },
+      { test: /\.json$/, loader: 'json-loader' },
     ],
   },
 };
