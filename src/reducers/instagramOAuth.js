@@ -1,7 +1,8 @@
 import { GET_ACCESSTOKEN } from '../actions/instagramOAuth';
 
 const initalState = {
-  accessToken: null,
+  token: '',
+  user: '',
 };
 
 export default function instagramOAuth(state = initalState, action) {
@@ -9,7 +10,8 @@ export default function instagramOAuth(state = initalState, action) {
     case GET_ACCESSTOKEN:
       return {
         ...state,
-        accessToken: action.token,
+        token: action.token,
+        user: action.user,
       };
     default:
       return state;
