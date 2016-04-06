@@ -7,13 +7,9 @@ export default class OAuth extends Component {
   }
 
   componentDidMount() {
-    const { getAccessToken } = this.props;
     const token = localStorage.getItem('token');
 
     if (token !== null) {
-      alert('已經登入囉！');
-      getAccessToken(localStorage.getItem('token'), localStorage.getItem('user'));
-
       browserHistory.replace({ pahtname: '/' });
     }
   }

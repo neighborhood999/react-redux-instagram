@@ -15,13 +15,14 @@ export default class Timeline extends Component {
     if (code !== undefined && Object.keys(instagramOAuth).length !== 0) {
       localStorage.setItem('token', instagramOAuth.token);
       localStorage.setItem('user', JSON.stringify(instagramOAuth.user));
-      getAccessToken(localStorage.getItem('token'), localStorage.getItem('user'));
 
       browserHistory.replace({ pathname: '/' });
     }
 
     if (localStorage.getItem('token') === null) {
       browserHistory.replace({ pathname: '/instagramOAuth' });
+    } else {
+      getAccessToken(localStorage.getItem('token'), localStorage.getItem('user'));
     }
   }
 
