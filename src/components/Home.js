@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 
-export default class Timeline extends Component {
+export default class Home extends Component {
   static propTypes = {
     instagramOAuth: PropTypes.object,
     location: PropTypes.object,

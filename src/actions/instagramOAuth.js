@@ -1,9 +1,9 @@
-export const GET_ACCESSTOKEN = 'GET_ACCESSTOKEN';
+export const SAVE_ACCESSTOKEN = 'SAVE_ACCESSTOKEN';
 
-export function getAccessToken(token, user) {
+export function saveAccessToken(token, userId) {
   return {
-    type: GET_ACCESSTOKEN,
+    type: SAVE_ACCESSTOKEN,
     token,
-    user,
+    userId,
   };
 }

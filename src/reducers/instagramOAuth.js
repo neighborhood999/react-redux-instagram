@@ -1,17 +1,17 @@
-import { GET_ACCESSTOKEN } from '../actions/instagramOAuth';
+import { SAVE_ACCESSTOKEN } from '../actions/instagramOAuth';
 
 const initalState = {
   token: '',
-  user: '',
+  userId: '',
 };
 
 export default function instagramOAuth(state = initalState, action) {
   switch (action.type) {
-    case GET_ACCESSTOKEN:
+    case SAVE_ACCESSTOKEN:
       return {
         ...state,
         token: action.token,
-        user: action.user,
+        userId: action.userId,
       };
     default:
       return state;

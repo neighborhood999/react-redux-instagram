@@ -8,12 +8,12 @@ import renderPage from './server/renderPage';
 
 function server(req, res) {
   const token = req.cookies.token;
-  const user = req.cookies.user;
+  const userId = req.cookies.userId;
   const initalState = {
     counter: 1,
     instagramOAuth: {
       token,
-      user,
+      userId,
     },
   };
   const store = configureStore(initalState);

@@ -32,7 +32,7 @@ function handleAuth(req, res, next) {
   if (isCode) {
     requestPromise(isCode, (data) => {
       req.cookies.token = data.access_token;
-      req.cookies.user = data.user;
+      req.cookies.userId = data.user.id;
       next();
     });
   } else {
