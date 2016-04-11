@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 
 export default class Home extends Component {
   static propTypes = {
-    instagramOAuth: PropTypes.object,
+    instagramOAuth: PropTypes.object.isRequired,
     location: PropTypes.object,
     saveAccessToken: PropTypes.func,
   }
@@ -21,7 +21,9 @@ export default class Home extends Component {
 
     if (localStorage.getItem('token') === null) {
       browserHistory.replace({ pathname: '/instagramOAuth' });
-    } else {
+    }
+
+    if (Object.keys(instagramOAuth).length === 0 && localStorage.getItem('token') !== null) {
       saveAccessToken(localStorage.getItem('token'), localStorage.getItem('userId'));
     }
   }
@@ -30,7 +32,10 @@ export default class Home extends Component {
     return (
       <div>
         <h1>Reactjs x Redux x Instagram</h1>
-        <h3>Timeline</h3>
+        <h3>Home</h3>
+        <Link to="counter">Counter Page</Link>
+        {' '}
+        <Link to="profile">Profile Page</Link>
       </div>
     );
   }

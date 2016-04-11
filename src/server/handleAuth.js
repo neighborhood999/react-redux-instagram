@@ -1,6 +1,5 @@
 import rP from 'request-promise';
 
-/* eslint arrow-body-style: ["error", "always"] */
 function requestPromise(code, cb) {
   const options = {
     method: 'POST',
@@ -26,7 +25,7 @@ function requestPromise(code, cb) {
 }
 
 /* eslint no-param-reassign: 0 */
-function handleAuth(req, res, next) {
+export default function handleAuth(req, res, next) {
   const isCode = req.query.code;
 
   if (isCode) {
@@ -39,5 +38,3 @@ function handleAuth(req, res, next) {
     next();
   }
 }
-
-module.exports = handleAuth;
