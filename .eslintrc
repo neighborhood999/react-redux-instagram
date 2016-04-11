@@ -3,11 +3,13 @@
   "extends": "airbnb",
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jquery": true
   },
   "rules": {
     "react/jsx-no-bind": 0,
-    "react/prefer-stateless-function": 0
+    "react/prefer-stateless-function": 0,
+    "arrow-body-style": ["error", "always"]
   },
   "plugins": [
     "react"

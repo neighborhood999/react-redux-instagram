@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "babel-register": "^6.7.2",
+    "jquery": "^2.2.3",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
     "react-redux": "^4.4.1",
