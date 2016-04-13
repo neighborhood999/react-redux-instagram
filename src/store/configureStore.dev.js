@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
-import DevTools from '../utilitys/DevTools';
+import DevTools from '../utils/DevTools';
 import rootReducer from '../reducers';
 
 const logger = createLogger({

@@ -4,7 +4,7 @@ import Root from './containers/Root';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './store/configureStore';
-import './stylesheets/css/style.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const initialState = window.__INITIAL_STATE__;
 const store = configureStore(initialState);
