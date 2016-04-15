@@ -44,6 +44,7 @@
   "dependencies": {
     "babel-register": "^6.7.2",
     "bootstrap": "^3.3.6",
+    "fontawesome": "^4.5.0",
     "jquery": "^2.2.3",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
