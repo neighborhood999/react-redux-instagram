@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
 import UserInfo from './Profile/UserInfo';
 import UserPhotos from './Profile/UserPhotos';
 
@@ -25,20 +24,16 @@ export default class Profile extends Component {
     const { counts } = profile.ProfileData;
 
     return (
-      <div>
-        <h3>User Profile</h3>
-        { profile.ProfileData.isFetchingProfile
+      <div className="container">
+        { profile.isFetchingProfile
           ? <div>Loading...</div>
           : <UserInfo profile={profile.ProfileData} counts={counts} />
         }
-
-        { profile.UserPhotos.isFetchingPhotos
-          ? <div>Loading photos...</div>
+        <hr />
+        { profile.isFetchingPhotos
+          ? <div>Loading...</div>
           : <UserPhotos photos={profile.UserPhotos} />
         }
-
-        {' '}
-        <Link to="/">Back Home</Link>
       </div>
     );
   }

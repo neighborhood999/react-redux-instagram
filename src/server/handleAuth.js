@@ -32,6 +32,7 @@ export default function handleAuth(req, res, next) {
     requestPromise(isCode, (data) => {
       req.cookies.token = data.access_token;
       req.cookies.userId = data.user.id;
+      req.cookies.userName = data.user.username;
       next();
     });
   } else {

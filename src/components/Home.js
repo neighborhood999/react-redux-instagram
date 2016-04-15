@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { browserHistory, Link } from 'react-router';
+import { browserHistory } from 'react-router';
 
 export default class Home extends Component {
   static propTypes = {
@@ -15,6 +15,7 @@ export default class Home extends Component {
     if (code !== undefined && Object.keys(instagramOAuth).length !== 0) {
       localStorage.setItem('token', instagramOAuth.token);
       localStorage.setItem('userId', instagramOAuth.userId);
+      localStorage.setItem('userName', instagramOAuth.userName);
 
       browserHistory.replace({ pathname: '/' });
     }
@@ -24,7 +25,11 @@ export default class Home extends Component {
     }
 
     if (Object.keys(instagramOAuth).length === 0 && localStorage.getItem('token') !== null) {
-      saveAccessToken(localStorage.getItem('token'), localStorage.getItem('userId'));
+      saveAccessToken(
+        localStorage.getItem('token'),
+        localStorage.getItem('userId'),
+        localStorage.getItem('userName')
+      );
     }
   }
 
@@ -32,10 +37,6 @@ export default class Home extends Component {
     return (
       <div>
         <h1>Reactjs x Redux x Instagram</h1>
-        <h3>Home</h3>
-        <Link to="counter">Counter Page</Link>
-        {' '}
-        <Link to="profile">Profile Page</Link>
       </div>
     );
   }
