@@ -19,3 +19,9 @@ export function getUserPhotos(token, userId, cb) {
 
   return instagramAPI(url, cb);
 }
+
+export function getPhotoCommentInfo(token, mediaId, cb) {
+  const url = `https://api.instagram.com/v1/media/${mediaId}/comments?access_token=${token}`;
+
+  return instagramAPI(url, cb);
+}

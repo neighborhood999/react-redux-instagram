@@ -4,14 +4,16 @@ import UserPhotos from './Profile/UserPhotos';
 
 export default class Profile extends Component {
   static propTypes = {
-    profile: PropTypes.object.isRequired,
     instagramOAuth: PropTypes.object.isRequired,
-    fetchUserProfile: PropTypes.func.isRequired,
-    fetchUserPhotos: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired,
+    profileAction: PropTypes.object.isRequired,
+    comment: PropTypes.object.isRequired,
+    commentAction: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
-    const { fetchUserProfile, fetchUserPhotos } = this.props;
+    const { profileAction } = this.props;
+    const { fetchUserProfile, fetchUserPhotos } = profileAction;
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
 
@@ -20,7 +22,7 @@ export default class Profile extends Component {
   }
 
   render() {
-    const { profile } = this.props;
+    const { instagramOAuth, profile, comment, commentAction } = this.props;
     const { counts } = profile.ProfileData;
 
     return (
@@ -32,7 +34,11 @@ export default class Profile extends Component {
         <hr />
         { profile.isFetchingPhotos
           ? <div>Loading...</div>
-          : <UserPhotos photos={profile.UserPhotos} />
+          : <UserPhotos photos={profile.UserPhotos}
+            token={instagramOAuth.token}
+            comment={comment}
+            commentAction={commentAction}
+          />
         }
       </div>
     );

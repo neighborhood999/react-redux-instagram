@@ -9,7 +9,7 @@
   "rules": {
     "react/jsx-no-bind": 0,
     "react/prefer-stateless-function": 0,
-    "arrow-body-style": ["error", "always"]
+    "arrow-body-style": 0
   },
   "plugins": [
     "react"
