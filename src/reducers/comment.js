@@ -7,7 +7,10 @@ const initalState = {
   isFetchingComment: false,
   isCommentFetchDone: false,
   CommentData: [],
-  PhotoURL: '',
+  photoURL: '',
+  likesCount: 0,
+  createTime: 0,
+  text: '',
 };
 
 export default function comment(state = initalState, action) {
@@ -24,7 +27,10 @@ export default function comment(state = initalState, action) {
         isFetchingComment: false,
         isCommentFetchDone: true,
         CommentData: action.CommentData,
-        PhotoURL: action.PhotoURL,
+        photoURL: action.photoURL,
+        likesCount: action.likesCount,
+        createTime: action.createTime,
+        text: action.text,
       });
     default:
       return state;

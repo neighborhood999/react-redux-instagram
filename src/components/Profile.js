@@ -36,6 +36,7 @@ export default class Profile extends Component {
           ? <div>Loading...</div>
           : <UserPhotos photos={profile.UserPhotos}
             token={instagramOAuth.token}
+            profile={profile.ProfileData}
             comment={comment}
             commentAction={commentAction}
           />

@@ -26,7 +26,7 @@ export default class UserInfo extends Component {
       <div className="row">
         <div className="col-md-3"></div>
         <div className="col-md-2">
-          <img src={profile.profile_picture} className="img-circle"></img>
+          <img src={profile.profile_picture} className="img-circle" />
         </div>
         <div className="col-md-5">
           <h3>{profile.username}{' '}<small>{profile.full_name}</small></h3>

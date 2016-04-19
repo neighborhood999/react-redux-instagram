@@ -11,21 +11,24 @@ function requestCommentInfo() {
   };
 }
 
-function responseCommentInfo(payload, photoURL) {
+function responseCommentInfo(payload, photoURL, likesCount, createTime, text) {
   return {
     type: RESPONSE_COMMENT_INFO,
     isFetchingComment: false,
     isCommentFetchDone: true,
     CommentData: payload.data,
-    PhotoURL: photoURL,
+    photoURL,
+    likesCount,
+    createTime,
+    text,
   };
 }
 
-export function fetchPhotoComment(token, mediaId, photoURL) {
+export function fetchPhotoComment(token, mediaId, photoURL, likesCount, createTime, text) {
   return (dispatch) => {
     dispatch(requestCommentInfo());
     getPhotoCommentInfo(token, mediaId, (data) => {
-      dispatch(responseCommentInfo(data, photoURL));
+      dispatch(responseCommentInfo(data, photoURL, likesCount, createTime, text));
     });
   };
 }

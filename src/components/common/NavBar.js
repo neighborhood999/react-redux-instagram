@@ -18,11 +18,10 @@ export default class NavBar extends Component {
         <div className="container-fluid">
           <div className="collapse navbar-collapse">
             <Link to="/">
-              <img src="http://i.imgur.com/iSDROgk.png" id="logoSize"></img>
+              <img src="http://i.imgur.com/iSDROgk.png" id="logoSize" />
             </Link>
             <ul className="nav navbar-nav navbar-right">
               <li><a href="#">explore</a></li>
-              <li><Link to="/counter">counter</Link></li>
               <li><Link to={`/profile/${user}`}>{user}</Link></li>
             </ul>
           </div>

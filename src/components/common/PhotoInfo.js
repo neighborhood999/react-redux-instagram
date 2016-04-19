@@ -1,13 +1,24 @@
 import React, { Component, PropTypes } from 'react';
+import moment from 'moment';
 
 export default class PhotoInfo extends Component {
   static propTypes = {
     comment: PropTypes.object.isRequired,
+    profile: PropTypes.object.isRequired,
+  }
+
+  calculateTime(time) {
+    const day = moment.unix(time);
+
+    return (
+      <span className="label label-default">{day.fromNow()}</span>
+    );
   }
 
   render() {
-    const { comment } = this.props;
-    const { CommentData, PhotoURL } = comment;
+    const { comment, profile } = this.props;
+    const { CommentData, photoURL, likesCount, createTime, text } = comment;
+
     return (
       <div className="modal fade"
         id="myModal"
@@ -26,14 +37,36 @@ export default class PhotoInfo extends Component {
               <div className="container-fluid">
                 <div className="row">
                   <div className="col-md-8">
-                    <img className="img-responsive" src={PhotoURL}></img>
+                    <img className="img-responsive" src={photoURL} />
                   </div>
                   <div className="col-md-4">
-                    {CommentData.map((message, i) => {
-                      return (
-                        <p key={i}>{message.text}</p>
-                      );
-                    })}
+                    <div className="row">
+                      <div className="col-md-3">
+                        <img className="img-responsive img-circle"
+                          src={profile.profile_picture}
+                          style={{ width: '40px', height: '40px' }}
+                        />
+                      </div>
+                      <div className="col-md-9">
+                        <h4>{profile.username}</h4>
+                      </div>
+                      <div className="col-md-12 text-right">
+                        {this.calculateTime(createTime)}
+                      </div>
+                    </div>
+                    <hr />
+                    <div>
+                      <i className="fa fa-heart" aria-hidden="true" /> {likesCount} 個讚
+                    </div>
+                    <br />
+                    <div>
+                    {text ? <div><a href="#">{profile.username}</a>{' '}{text}</div> : '' }
+                      {CommentData.map((message, i) => {
+                        return (
+                          <p key={i}>{message.from.username} {message.text}</p>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>

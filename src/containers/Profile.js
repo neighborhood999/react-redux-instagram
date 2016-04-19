@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Profile from '../components/Profile';
 import * as ProfileActions from '../actions/profile';
-import * as CommentAction from '../actions/comment';
+import * as CommentActions from '../actions/comment';
 
 function mapStateToProps(state) {
   return {
@@ -15,7 +15,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     profileAction: bindActionCreators(ProfileActions, dispatch),
-    commentAction: bindActionCreators(CommentAction, dispatch),
+    commentAction: bindActionCreators(CommentActions, dispatch),
   };
 }
 

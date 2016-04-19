@@ -11,7 +11,6 @@ function server(req, res) {
   const userId = req.cookies.userId;
   const userName = req.cookies.userName;
   const initalState = {
-    counter: 1,
     instagramOAuth: {
       token,
       userId,
