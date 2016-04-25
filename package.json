@@ -1,7 +1,7 @@
 {
-  "name": "reactjs-redux-instagram-app",
+  "name": "react-redux-instagram",
   "version": "0.0.1",
-  "description": "use reactjs x redux build instagram app.",
+  "description": "use react x redux build instagram.",
   "scripts": {
     "start": "node index.js"
   },
@@ -10,7 +10,14 @@
     "redux",
     "instagram"
   ],
-  "author": "neighborhood999@github <dean.leehom@gmail.com>",
+  "repository": {
+	"type": "git",
+	"url": "git+https://github.com/neighborhood999/react-redux-instagram.git"
+  },
+  "author": {
+	"name": "Peng Jie",
+	"url": "https://github.com/neighborhood999"
+  },
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.6.5",
