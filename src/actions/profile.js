@@ -23,11 +23,10 @@ function responseProfile(payload) {
 }
 
 export function fetchUserProfile(token, userId) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(requestProfile());
-    getProfile(token, userId, (data) => {
-      dispatch(responseProfile(data));
-    });
+    getProfile(token, userId)
+      .then(data => dispatch(responseProfile(data)));
   };
 }
 
@@ -49,10 +48,9 @@ function responseUserPhotos(payload) {
 }
 
 export function fetchUserPhotos(token, userId) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(requestUserPhotos());
-    getUserPhotos(token, userId, (data) => {
-      dispatch(responseUserPhotos(data));
-    });
+    getUserPhotos(token, userId)
+      .then(data => dispatch(responseUserPhotos(data)));
   };
 }

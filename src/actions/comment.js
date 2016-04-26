@@ -27,8 +27,7 @@ function responseCommentInfo(payload, photoURL, likesCount, createTime, text) {
 export function fetchPhotoComment(token, mediaId, photoURL, likesCount, createTime, text) {
   return (dispatch) => {
     dispatch(requestCommentInfo());
-    getPhotoCommentInfo(token, mediaId, (data) => {
-      dispatch(responseCommentInfo(data, photoURL, likesCount, createTime, text));
-    });
+    getPhotoCommentInfo(token, mediaId)
+      .then(data => dispatch(responseCommentInfo(data, photoURL, likesCount, createTime, text)));
   };
 }
