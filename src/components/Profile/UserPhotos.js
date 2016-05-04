@@ -29,10 +29,11 @@ export default class UserPhotos extends Component {
 
     return (
       <div className="row">
-        { photos.map((photo) => {
+        {photos.map((photo) => {
           return (
             <div key={photo.id} className="col-md-3">
-              <div className="hovereffect"
+              <div
+                className="hovereffect"
                 onClick={() => this.photoInfo(
                   photo.id,
                   photo.images.standard_resolution.url,
@@ -43,7 +44,11 @@ export default class UserPhotos extends Component {
                 data-toggle="modal"
                 data-target="#myModal"
               >
-                <img className="img-responsive" src={photo.images.standard_resolution.url} />
+                <img
+                  className="img-responsive"
+                  src={photo.images.standard_resolution.url}
+                  role="presentation"
+                />
                 <div className="overlay">
                   <h2><i className="fa fa-heart"> {photo.likes.count}</i></h2>
                   <h2><i className="fa fa-comment"> {photo.comments.count}</i></h2>

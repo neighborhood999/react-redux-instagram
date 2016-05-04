@@ -20,7 +20,8 @@ export default class PhotoInfo extends Component {
     const { CommentData, photoURL, likesCount, createTime, text } = comment;
 
     return (
-      <div className="modal fade"
+      <div
+        className="modal fade"
         id="myModal"
         tabIndex="-1"
         role="dialog"
@@ -37,14 +38,16 @@ export default class PhotoInfo extends Component {
               <div className="container-fluid">
                 <div className="row">
                   <div className="col-md-8">
-                    <img className="img-responsive" src={photoURL} />
+                    <img className="img-responsive" src={photoURL} role="presentation" />
                   </div>
                   <div className="col-md-4">
                     <div className="row">
                       <div className="col-md-3">
-                        <img className="img-responsive img-circle"
+                        <img
+                          className="img-responsive img-circle"
                           src={profile.profile_picture}
                           style={{ width: '40px', height: '40px' }}
+                          role="presentation"
                         />
                       </div>
                       <div className="col-md-9">
@@ -60,7 +63,7 @@ export default class PhotoInfo extends Component {
                     </div>
                     <br />
                     <div>
-                    {text ? <div><a href="#">{profile.username}</a>{' '}{text}</div> : '' }
+                    {text ? <div><a href="#">{profile.username}</a>{' '}{text}</div> : ''}
                       {CommentData.map((message, i) => {
                         return (
                           <p key={i}>{message.from.username} {message.text}</p>

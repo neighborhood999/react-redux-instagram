@@ -1,3 +1,4 @@
+/* eslint no-console:0 */
 import rP from 'request-promise';
 
 function requestPromise(code, cb) {

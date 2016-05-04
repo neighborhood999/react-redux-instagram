@@ -27,14 +27,15 @@ export default class Profile extends Component {
 
     return (
       <div className="container">
-        { profile.isFetchingProfile
+        {profile.isFetchingProfile
           ? <div>Loading...</div>
           : <UserInfo profile={profile.ProfileData} counts={counts} />
         }
         <hr />
-        { profile.isFetchingPhotos
+        {profile.isFetchingPhotos
           ? <div>Loading...</div>
-          : <UserPhotos photos={profile.UserPhotos}
+          : <UserPhotos
+            photos={profile.UserPhotos}
             token={instagramOAuth.token}
             profile={profile.ProfileData}
             comment={comment}
