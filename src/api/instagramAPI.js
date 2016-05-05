@@ -1,10 +1,11 @@
-function instagramAPI(url) {
-  return $.ajax({
-    url,
-    dataType: 'jsonp',
-  })
-  .then(response => response);
-}
+/* eslint no-console:0 */
+import fetchJSONP from 'fetch-jsonp';
+
+const instagramAPI = (url) => {
+  return fetchJSONP(url)
+    .then(response => response.json())
+    .catch(err => console.log(err));
+};
 
 export function getProfile(token, userId) {
   const url = `https://api.instagram.com/v1/users/${userId}/?access_token=${token}`;

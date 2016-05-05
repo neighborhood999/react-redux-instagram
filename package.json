@@ -4,14 +4,15 @@
   "description": "use react x redux build instagram.",
   "scripts": {
     "start": "node index.js",
-		"lint": "eslint src"
+    "lint": "eslint src"
   },
-	"bin": {
-		"eslint": "node_modules/.bin/eslint"
-	},
+  "bin": {
+    "eslint": "node_modules/.bin/eslint"
+  },
   "keywords": [
-    "reactjs",
+    "react",
     "redux",
+    "universal",
     "instagram"
   ],
   "repository": {
@@ -41,6 +42,7 @@
     "eslint-plugin-react": "^5.0.1",
     "exports-loader": "^0.6.3",
     "express": "^4.13.4",
+    "fetch-jsonp": "^1.0.0",
     "file-loader": "^0.8.5",
     "imports-loader": "^0.6.5",
     "less-loader": "^2.2.3",
@@ -52,8 +54,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.10.0",
-    "whatwg-fetch": "^1.0.0"
+    "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
     "babel-register": "^6.8.0",

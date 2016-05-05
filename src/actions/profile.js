@@ -1,4 +1,6 @@
-import { getProfile, getUserPhotos } from '../api/instagramAPI';
+/* eslint no-console:0 */
+import { getUserPhotos } from '../api/instagramAPI';
+import fetchJSONP from 'fetch-jsonp';
 
 export const REQUEST_PROFILE = 'REQUEST_PROFILE';
 export const RESPONSE_PROFILE = 'RESPONSE_PROFILEE';
@@ -23,10 +25,15 @@ function responseProfile(payload) {
 }
 
 export function fetchUserProfile(token, userId) {
+  const url = `https://api.instagram.com/v1/users/${userId}/?access_token=${token}`;
+
+  // maybe we can direct return fetchJSONP in action
   return dispatch => {
     dispatch(requestProfile());
-    getProfile(token, userId)
-      .then(data => dispatch(responseProfile(data)));
+    return fetchJSONP(url)
+      .then(response => response.json())
+      .then(data => dispatch(responseProfile(data)))
+      .catch(err => console.log(err));
   };
 }
 
