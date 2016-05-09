@@ -1,14 +1,16 @@
+/* eslint no-console:0 */
 import rP from 'request-promise';
+import config from '../../config/config.example';
 
 function requestPromise(code, cb) {
   const options = {
     method: 'POST',
     uri: 'https://api.instagram.com/oauth/access_token',
     form: {
-      client_id: '52d1f7d9282a42f59e1c36f013acf974',
-      client_secret: 'bc997656dd2f4149a70897cf67ef9464',
+      client_id: config.clientID,
+      client_secret: config.clientSecret,
       grant_type: 'authorization_code',
-      redirect_uri: 'http://localhost:3000/',
+      redirect_uri: config.redirectURI,
       code,
     },
   };

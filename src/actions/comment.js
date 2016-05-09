@@ -3,7 +3,7 @@ import { getPhotoCommentInfo } from '../api/instagramAPI';
 export const REQUEST_COMMENT_INFO = 'REQUEST_COMMENT_INFO';
 export const RESPONSE_COMMENT_INFO = 'RESPONSE_COMMENT_INFO';
 
-function requestCommentInfo() {
+export function requestCommentInfo() {
   return {
     type: REQUEST_COMMENT_INFO,
     isFetchingComment: true,
@@ -11,7 +11,7 @@ function requestCommentInfo() {
   };
 }
 
-function responseCommentInfo(payload, photoURL, likesCount, createTime, text) {
+export function responseCommentInfo(payload, photoURL, likesCount, createTime, text) {
   return {
     type: RESPONSE_COMMENT_INFO,
     isFetchingComment: false,

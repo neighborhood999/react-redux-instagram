@@ -18,7 +18,7 @@ export default class NavBar extends Component {
         <div className="container-fluid">
           <div className="collapse navbar-collapse">
             <Link to="/">
-              <img src="http://i.imgur.com/iSDROgk.png" id="logoSize" />
+              <img src="http://i.imgur.com/iSDROgk.png" id="logoSize" role="presentation" />
             </Link>
             <ul className="nav navbar-nav navbar-right">
               <li><a href="#">explore</a></li>

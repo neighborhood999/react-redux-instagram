@@ -1,11 +1,13 @@
-import { getProfile, getUserPhotos } from '../api/instagramAPI';
+/* eslint no-console:0 */
+import { getUserPhotos } from '../api/instagramAPI';
+import fetchJSONP from 'fetch-jsonp';
 
 export const REQUEST_PROFILE = 'REQUEST_PROFILE';
 export const RESPONSE_PROFILE = 'RESPONSE_PROFILEE';
 export const REQUEST_USER_PHOTOS = 'REQUEST_USER_PHOTOS';
 export const RESPONSE_USER_PHOTOS = 'RESPONSE_USER_PHOTOS';
 
-function requestProfile() {
+export function requestProfile() {
   return {
     type: REQUEST_PROFILE,
     isFetchingProfile: true,
@@ -13,7 +15,7 @@ function requestProfile() {
   };
 }
 
-function responseProfile(payload) {
+export function responseProfile(payload) {
   return {
     type: RESPONSE_PROFILE,
     isFetchingProfile: false,
@@ -23,14 +25,19 @@ function responseProfile(payload) {
 }
 
 export function fetchUserProfile(token, userId) {
+  const url = `https://api.instagram.com/v1/users/${userId}/?access_token=${token}`;
+
+  // maybe we can direct return fetchJSONP in action
   return dispatch => {
     dispatch(requestProfile());
-    getProfile(token, userId)
-      .then(data => dispatch(responseProfile(data)));
+    return fetchJSONP(url)
+      .then(response => response.json())
+      .then(data => dispatch(responseProfile(data)))
+      .catch(err => console.log(err));
   };
 }
 
-function requestUserPhotos() {
+export function requestUserPhotos() {
   return {
     type: REQUEST_USER_PHOTOS,
     isFetchingPhotos: true,
@@ -38,7 +45,7 @@ function requestUserPhotos() {
   };
 }
 
-function responseUserPhotos(payload) {
+export function responseUserPhotos(payload) {
   return {
     type: RESPONSE_USER_PHOTOS,
     isFetchingPhotos: false,
