@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node index.js",
     "lint": "eslint src",
-    "test": "ava -v",
+    "test": "NODE_ENV=test ava -v",
     "test:cov": "nyc npm test"
   },
   "ava": {
@@ -53,11 +53,14 @@
     "fetch-jsonp": "^1.0.0",
     "file-loader": "^0.8.5",
     "imports-loader": "^0.6.5",
+    "isomorphic-fetch": "^2.2.1",
     "less-loader": "^2.2.3",
     "moment": "^2.13.0",
+    "nock": "^8.0.0",
     "nyc": "^6.4.4",
     "redux-devtools": "^3.2.0",
     "redux-devtools-log-monitor": "^1.0.11",
+    "redux-mock-store": "^1.0.2",
     "request-promise": "^3.0.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",

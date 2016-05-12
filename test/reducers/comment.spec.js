@@ -1,5 +1,5 @@
 import test from 'ava';
-import comment from '../../src/reducers/comment';
+import reducer from '../../src/reducers/comment';
 import * as commentActions from '../../src/actions/comment';
 
 const initalState = {
@@ -13,11 +13,11 @@ const initalState = {
 };
 
 test('should handle inital state', t => {
-  t.deepEqual(comment(undefined, {}), initalState);
+  t.deepEqual(reducer(undefined, {}), initalState);
 });
 
 test('shounld handle REQUEST_COMMENT_INFO', t => {
-  t.deepEqual(comment(initalState, commentActions.requestCommentInfo()), {
+  t.deepEqual(reducer(initalState, commentActions.requestCommentInfo()), {
     isFetchingComment: true,
     isCommentFetchDone: false,
     CommentData: [],
@@ -40,7 +40,7 @@ test('should handle RESPONSE_COMMENT_INFO', t => {
   const createTime = '1460480018';
   const text = 'test message';
 
-  t.deepEqual(comment(initalState,
+  t.deepEqual(reducer(initalState,
     commentActions.responseCommentInfo(payload, photoURL, likesCount, createTime, text)), {
       isFetchingComment: false,
       isCommentFetchDone: true,
