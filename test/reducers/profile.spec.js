@@ -1,5 +1,5 @@
 import test from 'ava';
-import profile from '../../src/reducers/profile';
+import reducer from '../../src/reducers/profile';
 import * as profileActions from '../../src/actions/profile';
 
 const initalState = {
@@ -12,11 +12,11 @@ const initalState = {
 };
 
 test('should handle initial state', t => {
-  t.deepEqual(profile(undefined, {}), initalState);
+  t.deepEqual(reducer(undefined, {}), initalState);
 });
 
 test('should handle REQUEST_PROFILE', t => {
-  t.deepEqual(profile(initalState, profileActions.requestProfile()), {
+  t.deepEqual(reducer(initalState, profileActions.requestProfile()), {
     isFetchingProfile: true,
     isProfileFetchDone: false,
     isFetchingPhotos: false,
@@ -43,7 +43,7 @@ test('should handle RESPONSE_PROFILE', t => {
     },
   };
 
-  t.deepEqual(profile(initalState, profileActions.responseProfile(payload)), {
+  t.deepEqual(reducer(initalState, profileActions.responseProfile(payload)), {
     isFetchingProfile: false,
     isProfileFetchDone: true,
     isFetchingPhotos: false,
@@ -54,7 +54,7 @@ test('should handle RESPONSE_PROFILE', t => {
 });
 
 test('should handle REQUEST_USER_PHOTOS', t => {
-  t.deepEqual(profile(initalState, profileActions.requestUserPhotos()), {
+  t.deepEqual(reducer(initalState, profileActions.requestUserPhotos()), {
     isFetchingProfile: false,
     isProfileFetchDone: false,
     isFetchingPhotos: true,
@@ -73,7 +73,7 @@ test('should handle RESPONSE_USER_PHOTOS', t => {
     ],
   };
 
-  t.deepEqual(profile(initalState, profileActions.responseUserPhotos(payload)), {
+  t.deepEqual(reducer(initalState, profileActions.responseUserPhotos(payload)), {
     isFetchingProfile: false,
     isProfileFetchDone: false,
     isFetchingPhotos: false,
