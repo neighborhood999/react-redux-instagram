@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import moment from 'moment';
+import { fromNow, daysBetween } from 'unix-timestamp-transform';
 
 export default class PhotoInfo extends Component {
   static propTypes = {
@@ -8,10 +8,10 @@ export default class PhotoInfo extends Component {
   }
 
   calculateTime(time) {
-    const day = moment.unix(time);
+    const days = fromNow(time);
 
     return (
-      <span className="label label-default">{day.fromNow()}</span>
+      <span className="label label-default">{daysBetween(days)}</span>
     );
   }
 
