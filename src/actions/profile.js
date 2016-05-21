@@ -4,8 +4,10 @@ import isomorphicFetch from 'isomorphic-fetch';
 
 export const REQUEST_PROFILE = 'REQUEST_PROFILE';
 export const RESPONSE_PROFILE = 'RESPONSE_PROFILEE';
+export const FAILURE_REQUEST_PROFILE = 'FAILURE_REQUEST_PROFILE';
 export const REQUEST_USER_PHOTOS = 'REQUEST_USER_PHOTOS';
 export const RESPONSE_USER_PHOTOS = 'RESPONSE_USER_PHOTOS';
+export const FAILURE_REQUEST_PHOTOS = 'FAILURE_REQUEST_PHOTOS';
 
 const fetch = process.env.NODE_ENV === 'test' ? isomorphicFetch : fetchJSONP;
 
@@ -26,6 +28,18 @@ export function responseProfile(payload) {
   };
 }
 
+export function failureRequestProfile(err) {
+  return {
+    type: FAILURE_REQUEST_PROFILE,
+    isFetchingProfile: false,
+    isProfileFetchDone: false,
+    errorMessage: {
+      profileInfo: err.message,
+      recentMeida: '',
+    },
+  };
+}
+
 export function fetchUserProfile(token, userId) {
   const url = `https://api.instagram.com/v1/users/${userId}/?access_token=${token}`;
 
@@ -34,7 +48,7 @@ export function fetchUserProfile(token, userId) {
     return fetch(url)
       .then(response => response.json())
       .then(data => dispatch(responseProfile(data)))
-      .catch(err => console.log(err));
+      .catch(err => dispatch(failureRequestProfile(err)));
   };
 }
 
@@ -55,6 +69,18 @@ export function responseUserPhotos(payload) {
   };
 }
 
+export function failureRequestPhotos(err) {
+  return {
+    type: FAILURE_REQUEST_PHOTOS,
+    isFetchingPhotos: false,
+    isPhotosFetchDone: false,
+    errorMessage: {
+      profileInfo: '',
+      recentMeida: err.message,
+    },
+  };
+}
+
 export function fetchUserPhotos(token, userId) {
   const url = `https://api.instagram.com/v1/users/${userId}/media/recent/?access_token=${token}`;
 
@@ -63,6 +89,6 @@ export function fetchUserPhotos(token, userId) {
     return fetch(url)
       .then(response => response.json())
       .then(data => dispatch(responseUserPhotos(data)))
-      .catch(err => console.log(err));
+      .catch(err => dispatch(failureRequestPhotos(err)));
   };
 }

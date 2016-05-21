@@ -6,7 +6,7 @@ import * as profileActions from '../../src/actions/profile';
 
 const userId = '291769334';
 const token = '291769334.52d1f7d.7bfee59549ac40268c14255900e3a17d';
-const payload = {
+const mockPayload = {
   data: {
     username: 'bivinity',
     bio: 'E.L.E \u2716\ufe0f',
@@ -43,7 +43,7 @@ test('requestProfile should create request action', t => {
 test('fetchUserProfile Async', t => {
   nock('http://localhost:3000')
     .get(`v1/users/${userId}/?access_token=${token}`)
-    .reply(200, payload);
+    .reply(200, mockPayload);
 
   const store = mockStore({ profile: {} });
   const expectedAction = [
@@ -56,7 +56,7 @@ test('fetchUserProfile Async', t => {
       type: profileActions.RESPONSE_PROFILE,
       isFetchingProfile: false,
       isProfileFetchDone: true,
-      ProfileData: payload.data,
+      ProfileData: mockPayload.data,
     },
   ];
 
@@ -73,10 +73,25 @@ test('responseProfile should create response action', t => {
     type: profileActions.RESPONSE_PROFILE,
     isFetchingProfile: false,
     isProfileFetchDone: true,
-    ProfileData: payload.data,
+    ProfileData: mockPayload.data,
   };
 
-  t.deepEqual(profileActions.responseProfile(payload), expectedAction);
+  t.deepEqual(profileActions.responseProfile(mockPayload), expectedAction);
+});
+
+test('failureRequestProfile should create failure action', t => {
+  const mockErrMessage = { message: 'request profileInfo failure.' };
+  const expectedAction = {
+    type: profileActions.FAILURE_REQUEST_PROFILE,
+    isFetchingProfile: false,
+    isProfileFetchDone: false,
+    errorMessage: {
+      profileInfo: 'request profileInfo failure.',
+      recentMeida: '',
+    },
+  };
+
+  t.deepEqual(profileActions.failureRequestProfile(mockErrMessage), expectedAction);
 });
 
 test('requestUserPhotos should create request action', t => {
@@ -92,7 +107,7 @@ test('requestUserPhotos should create request action', t => {
 test('fetchUserPhotos Async', t => {
   nock('http://localhost:3000')
     .get(`v1/users/${userId}/?access_token=${token}`)
-    .reply(200, payload);
+    .reply(200, mockPayload);
 
   const store = mockStore({ profile: {} });
   const photos = {
@@ -190,4 +205,19 @@ test('responseUserPhotos should create response action', t => {
   };
 
   t.deepEqual(profileActions.responseUserPhotos(photos), expectedAction);
+});
+
+test('failureRequestPhotos should create failure action', t => {
+  const mockErrMessage = { message: 'request photos failure.' };
+  const expectedAction = {
+    type: profileActions.FAILURE_REQUEST_PHOTOS,
+    isFetchingPhotos: false,
+    isPhotosFetchDone: false,
+    errorMessage: {
+      profileInfo: '',
+      recentMeida: 'request photos failure.',
+    },
+  };
+
+  t.deepEqual(profileActions.failureRequestPhotos(mockErrMessage), expectedAction);
 });

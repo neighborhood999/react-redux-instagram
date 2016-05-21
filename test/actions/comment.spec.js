@@ -16,7 +16,7 @@ const from = {
   id: 123,
   full_name: 'pj',
 };
-const payload = {
+const mockPayload = {
   data: [
     {
       created_time: '1460480018',
@@ -45,10 +45,10 @@ test('requestCommentInfo should create request action', t => {
   t.deepEqual(commentActions.requestCommentInfo(), expectedAction);
 });
 
-test('fetchPhotoComment Async', t => {
+test('fetchPhotoComment Async success', t => {
   nock('http://localhost:3000')
     .get(`v1/media/${mediaId}/comments?access_token=${token}`)
-    .reply(200, payload);
+    .reply(200, mockPayload);
 
   const store = mockStore({ comment: {} });
   const expectedAction = [
@@ -61,7 +61,7 @@ test('fetchPhotoComment Async', t => {
       type: commentActions.RESPONSE_COMMENT_INFO,
       isFetchingComment: false,
       isCommentFetchDone: true,
-      CommentData: payload.data,
+      CommentData: mockPayload.data,
       photoURL,
       likesCount,
       createTime,
@@ -86,7 +86,7 @@ test('responseComment should create response action', t => {
     type: commentActions.RESPONSE_COMMENT_INFO,
     isFetchingComment: false,
     isCommentFetchDone: true,
-    CommentData: payload.data,
+    CommentData: mockPayload.data,
     photoURL,
     likesCount,
     createTime,
@@ -95,8 +95,20 @@ test('responseComment should create response action', t => {
 
   t.deepEqual(
     commentActions.responseCommentInfo(
-      payload, photoURL, likesCount, createTime, text
+      mockPayload, photoURL, likesCount, createTime, text
     ),
       expectedAction
     );
+});
+
+test('failureRequestComment should create failure action', t => {
+  const mockErrMessage = { message: 'request comment failure.' };
+  const expectedAction = {
+    type: commentActions.FAILURE_REQUEST_COMMENT,
+    isFetchingComment: false,
+    isCommentFetchDone: false,
+    errorMessage: 'request comment failure.',
+  };
+
+  t.deepEqual(commentActions.failureRequestComment(mockErrMessage), expectedAction);
 });
