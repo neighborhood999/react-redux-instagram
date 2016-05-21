@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import UserInfo from './Profile/UserInfo';
 import UserPhotos from './Profile/UserPhotos';
+import {
+  checkLocalStorageToken,
+} from '../utils/handleAccessToken';
 
 export default class Profile extends Component {
   static propTypes = {
@@ -12,6 +15,9 @@ export default class Profile extends Component {
   };
 
   componentDidMount() {
+    // check have access token.
+    checkLocalStorageToken();
+
     const { profileAction } = this.props;
     const { fetchUserProfile, fetchUserPhotos } = profileAction;
     const token = localStorage.getItem('token');

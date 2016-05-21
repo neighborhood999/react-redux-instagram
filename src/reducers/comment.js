@@ -1,6 +1,7 @@
 import {
   REQUEST_COMMENT_INFO,
   RESPONSE_COMMENT_INFO,
+  FAILURE_REQUEST_COMMENT,
 } from '../actions/comment';
 
 const initalState = {
@@ -11,6 +12,7 @@ const initalState = {
   likesCount: 0,
   createTime: 0,
   text: '',
+  errorMessage: '',
 };
 
 export default function comment(state = initalState, action) {
@@ -31,6 +33,13 @@ export default function comment(state = initalState, action) {
         likesCount: action.likesCount,
         createTime: action.createTime,
         text: action.text,
+      });
+    case FAILURE_REQUEST_COMMENT:
+      return Object.assign({}, state, {
+        ...state,
+        isFetchingComment: false,
+        isCommentFetchDone: false,
+        errorMessage: action.errorMessage,
       });
     default:
       return state;

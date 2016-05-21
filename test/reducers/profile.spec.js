@@ -9,6 +9,10 @@ const initalState = {
   isPhotosFetchDone: false,
   ProfileData: {},
   UserPhotos: [],
+  errorMessage: {
+    profileInfo: '',
+    recentMeida: '',
+  },
 };
 
 test('should handle initial state', t => {
@@ -23,6 +27,10 @@ test('should handle REQUEST_PROFILE', t => {
     isPhotosFetchDone: false,
     ProfileData: {},
     UserPhotos: [],
+    errorMessage: {
+      profileInfo: '',
+      recentMeida: '',
+    },
   });
 });
 
@@ -50,6 +58,27 @@ test('should handle RESPONSE_PROFILE', t => {
     isPhotosFetchDone: false,
     ProfileData: payload.data,
     UserPhotos: [],
+    errorMessage: {
+      profileInfo: '',
+      recentMeida: '',
+    },
+  });
+});
+
+test('should handle FAILURE_REQUEST_PROFILE', t => {
+  const mockErrMessage = { message: 'failure request profile.' };
+
+  t.deepEqual(reducer(initalState, profileActions.failureRequestProfile(mockErrMessage)), {
+    isFetchingProfile: false,
+    isProfileFetchDone: false,
+    isFetchingPhotos: false,
+    isPhotosFetchDone: false,
+    ProfileData: [],
+    UserPhotos: [],
+    errorMessage: {
+      profileInfo: mockErrMessage.message,
+      recentMeida: '',
+    },
   });
 });
 
@@ -61,6 +90,10 @@ test('should handle REQUEST_USER_PHOTOS', t => {
     isPhotosFetchDone: false,
     ProfileData: {},
     UserPhotos: [],
+    errorMessage: {
+      profileInfo: '',
+      recentMeida: '',
+    },
   });
 });
 
@@ -80,5 +113,26 @@ test('should handle RESPONSE_USER_PHOTOS', t => {
     isPhotosFetchDone: true,
     ProfileData: {},
     UserPhotos: payload.data,
+    errorMessage: {
+      profileInfo: '',
+      recentMeida: '',
+    },
+  });
+});
+
+test('should handle FAILURE_REQUEST_PHOTOS', t => {
+  const mockErrMessage = { message: 'failure request photos.' };
+
+  t.deepEqual(reducer(initalState, profileActions.failureRequestPhotos(mockErrMessage)), {
+    isFetchingProfile: false,
+    isProfileFetchDone: false,
+    isFetchingPhotos: false,
+    isPhotosFetchDone: false,
+    ProfileData: [],
+    UserPhotos: [],
+    errorMessage: {
+      profileInfo: '',
+      recentMeida: mockErrMessage.message,
+    },
   });
 });

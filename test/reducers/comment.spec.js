@@ -10,6 +10,7 @@ const initalState = {
   likesCount: 0,
   createTime: 0,
   text: '',
+  errorMessage: '',
 };
 
 test('should handle inital state', t => {
@@ -25,6 +26,7 @@ test('shounld handle REQUEST_COMMENT_INFO', t => {
     likesCount: 0,
     createTime: 0,
     text: '',
+    errorMessage: '',
   });
 });
 
@@ -49,5 +51,21 @@ test('should handle RESPONSE_COMMENT_INFO', t => {
       likesCount: 99,
       createTime: '1460480018',
       text: 'test message',
+      errorMessage: '',
     });
+});
+
+test('should handle FAILURE_REQUEST_COMMENT', t => {
+  const mockErrMessage = { message: 'failure request comment.' };
+
+  t.deepEqual(reducer(initalState, commentActions.failureRequestComment(mockErrMessage)), {
+    isFetchingComment: false,
+    isCommentFetchDone: false,
+    CommentData: [],
+    photoURL: '',
+    likesCount: 0,
+    createTime: 0,
+    text: '',
+    errorMessage: mockErrMessage.message,
+  });
 });
