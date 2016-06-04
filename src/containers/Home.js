@@ -3,14 +3,12 @@ import { connect } from 'react-redux';
 import Home from '../components/Home';
 import * as instagramOAuthActions from '../actions/instagramOAuth';
 
-function mapStateToProps(state) {
-  return {
-    instagramOAuth: state.instagramOAuth,
-  };
-}
+const mapStateToProps = (state) => ({
+  instagramOAuth: state.instagramOAuth,
+});
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(instagramOAuthActions, dispatch);
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

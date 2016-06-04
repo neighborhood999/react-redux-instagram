@@ -8,37 +8,31 @@ export const FAILURE_REQUEST_COMMENT = 'FAILURE_REQUEST_COMMENT';
 
 const fetch = process.env.NODE_ENV === 'test' ? isomorphicFetch : fetchJSONP;
 
-export function requestCommentInfo() {
-  return {
-    type: REQUEST_COMMENT_INFO,
-    isFetchingComment: true,
-    isCommentFetchDone: false,
-  };
-}
+export const requestCommentInfo = () => ({
+  type: REQUEST_COMMENT_INFO,
+  isFetchingComment: true,
+  isCommentFetchDone: false,
+});
 
-export function responseCommentInfo(payload, photoURL, likesCount, createTime, text) {
-  return {
-    type: RESPONSE_COMMENT_INFO,
-    isFetchingComment: false,
-    isCommentFetchDone: true,
-    CommentData: payload.data,
-    photoURL,
-    likesCount,
-    createTime,
-    text,
-  };
-}
+export const responseCommentInfo = (payload, photoURL, likesCount, createTime, text) => ({
+  type: RESPONSE_COMMENT_INFO,
+  isFetchingComment: false,
+  isCommentFetchDone: true,
+  CommentData: payload.data,
+  photoURL,
+  likesCount,
+  createTime,
+  text,
+});
 
-export function failureRequestComment(err) {
-  return {
-    type: FAILURE_REQUEST_COMMENT,
-    isFetchingComment: false,
-    isCommentFetchDone: false,
-    errorMessage: err.message,
-  };
-}
+export const failureRequestComment = (err) => ({
+  type: FAILURE_REQUEST_COMMENT,
+  isFetchingComment: false,
+  isCommentFetchDone: false,
+  errorMessage: err.message,
+});
 
-export function fetchPhotoComment(token, mediaId, photoURL, likesCount, createTime, text) {
+export const fetchPhotoComment = (token, mediaId, photoURL, likesCount, createTime, text) => {
   const url = `https://api.instagram.com/v1/media/${mediaId}/comments?access_token=${token}`;
 
   return (dispatch) => {
@@ -48,4 +42,4 @@ export function fetchPhotoComment(token, mediaId, photoURL, likesCount, createTi
       .then(data => dispatch(responseCommentInfo(data, photoURL, likesCount, createTime, text)))
       .catch(err => dispatch(failureRequestComment(err)));
   };
-}
+};
