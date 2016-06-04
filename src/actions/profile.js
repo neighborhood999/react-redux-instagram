@@ -11,34 +11,28 @@ export const FAILURE_REQUEST_PHOTOS = 'FAILURE_REQUEST_PHOTOS';
 
 const fetch = process.env.NODE_ENV === 'test' ? isomorphicFetch : fetchJSONP;
 
-export function requestProfile() {
-  return {
-    type: REQUEST_PROFILE,
-    isFetchingProfile: true,
-    isProfileFetchDone: false,
-  };
-}
+export const requestProfile = () => ({
+  type: REQUEST_PROFILE,
+  isFetchingProfile: true,
+  isProfileFetchDone: false,
+});
 
-export function responseProfile(payload) {
-  return {
-    type: RESPONSE_PROFILE,
-    isFetchingProfile: false,
-    isProfileFetchDone: true,
-    ProfileData: payload.data,
-  };
-}
+export const responseProfile = (payload) => ({
+  type: RESPONSE_PROFILE,
+  isFetchingProfile: false,
+  isProfileFetchDone: true,
+  ProfileData: payload.data,
+});
 
-export function failureRequestProfile(err) {
-  return {
-    type: FAILURE_REQUEST_PROFILE,
-    isFetchingProfile: false,
-    isProfileFetchDone: false,
-    errorMessage: {
-      profileInfo: err.message,
-      recentMeida: '',
-    },
-  };
-}
+export const failureRequestProfile = (err) => ({
+  type: FAILURE_REQUEST_PROFILE,
+  isFetchingProfile: false,
+  isProfileFetchDone: false,
+  errorMessage: {
+    profileInfo: err.message,
+    recentMeida: '',
+  },
+});
 
 export function fetchUserProfile(token, userId) {
   const url = `https://api.instagram.com/v1/users/${userId}/?access_token=${token}`;
@@ -52,36 +46,30 @@ export function fetchUserProfile(token, userId) {
   };
 }
 
-export function requestUserPhotos() {
-  return {
-    type: REQUEST_USER_PHOTOS,
-    isFetchingPhotos: true,
-    isPhotosFetchDone: false,
-  };
-}
+export const requestUserPhotos = () => ({
+  type: REQUEST_USER_PHOTOS,
+  isFetchingPhotos: true,
+  isPhotosFetchDone: false,
+});
 
-export function responseUserPhotos(payload) {
-  return {
-    type: RESPONSE_USER_PHOTOS,
-    isFetchingPhotos: false,
-    isPhotosFetchDone: true,
-    UserPhotos: payload.data,
-  };
-}
+export const responseUserPhotos = (payload) => ({
+  type: RESPONSE_USER_PHOTOS,
+  isFetchingPhotos: false,
+  isPhotosFetchDone: true,
+  UserPhotos: payload.data,
+});
 
-export function failureRequestPhotos(err) {
-  return {
-    type: FAILURE_REQUEST_PHOTOS,
-    isFetchingPhotos: false,
-    isPhotosFetchDone: false,
-    errorMessage: {
-      profileInfo: '',
-      recentMeida: err.message,
-    },
-  };
-}
+export const failureRequestPhotos = (err) => ({
+  type: FAILURE_REQUEST_PHOTOS,
+  isFetchingPhotos: false,
+  isPhotosFetchDone: false,
+  errorMessage: {
+    profileInfo: '',
+    recentMeida: err.message,
+  },
+});
 
-export function fetchUserPhotos(token, userId) {
+export const fetchUserPhotos = (token, userId) => {
   const url = `https://api.instagram.com/v1/users/${userId}/media/recent/?access_token=${token}`;
 
   return dispatch => {
@@ -91,4 +79,4 @@ export function fetchUserPhotos(token, userId) {
       .then(data => dispatch(responseUserPhotos(data)))
       .catch(err => dispatch(failureRequestPhotos(err)));
   };
-}
+};

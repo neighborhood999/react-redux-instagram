@@ -1,4 +1,4 @@
-/* eslint no-console:0 */
+/* eslint no-console:0, no-param-reassign: 0 */
 import rP from 'request-promise';
 import config from '../../config/config.example';
 
@@ -26,7 +26,6 @@ function requestPromise(code, cb) {
     });
 }
 
-/* eslint no-param-reassign: 0 */
 export default function handleAuth(req, res, next) {
   const isCode = req.query.code;
 
