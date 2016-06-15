@@ -74,10 +74,6 @@ test('fetchPhotoComment Async success', t => {
     .then(() => {
       t.is(store.getActions()[0].type, expectedAction[0].type);
       t.is(store.getActions()[1].type, expectedAction[1].type);
-      t.is(
-        store.getActions()[1].CommentData[0].from.username,
-        expectedAction[1].CommentData[0].from.username
-      );
     });
 });
 
