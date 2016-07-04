@@ -10,7 +10,7 @@
   },
   "ava": {
     "require": "babel-core/register",
-    "files:": "test/**/*.js",
+    "files": "test/**/*.js",
     "babel": "inherit"
   },
   "bin": {
