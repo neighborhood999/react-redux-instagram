@@ -63,7 +63,7 @@ export default class PhotoInfo extends Component {
                     </div>
                     <br />
                     <div>
-                    {text ? <div><a href="#">{profile.username}</a>{' '}{text}</div> : ''}
+                    {text ? <div><a>{profile.username}</a>{' '}{text}</div> : ''}
                       {CommentData.map((message, i) => {
                         return (
                           <p key={i}>{message.from.username} {message.text}</p>

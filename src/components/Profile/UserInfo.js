@@ -16,7 +16,7 @@ export default class UserInfo extends Component {
     let followedBy;
     let follows;
 
-    if (typeof(counts) !== 'undefined') {
+    if (typeof (counts) !== 'undefined') {
       media = counts.media;
       followedBy = counts.followed_by;
       follows = counts.follows;
@@ -24,7 +24,7 @@ export default class UserInfo extends Component {
 
     return (
       <div className="row">
-        <div className="col-md-3"></div>
+        <div className="col-md-3" />
         <div className="col-md-2">
           <img src={profile.profile_picture} className="img-circle" role="presentation" />
         </div>
@@ -40,7 +40,7 @@ export default class UserInfo extends Component {
             <a href={profile.website}>{profile.website ? this.splitURL(profile.website) : ''}</a>
           </p>
         </div>
-        <div className="col-md-2"></div>
+        <div className="col-md-2" />
       </div>
     );
   }
