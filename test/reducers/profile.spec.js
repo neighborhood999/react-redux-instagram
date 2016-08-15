@@ -73,7 +73,7 @@ test('should handle FAILURE_REQUEST_PROFILE', t => {
     isProfileFetchDone: false,
     isFetchingPhotos: false,
     isPhotosFetchDone: false,
-    ProfileData: [],
+    ProfileData: {},
     UserPhotos: [],
     errorMessage: {
       profileInfo: mockErrMessage.message,
@@ -128,7 +128,7 @@ test('should handle FAILURE_REQUEST_PHOTOS', t => {
     isProfileFetchDone: false,
     isFetchingPhotos: false,
     isPhotosFetchDone: false,
-    ProfileData: [],
+    ProfileData: {},
     UserPhotos: [],
     errorMessage: {
       profileInfo: '',
