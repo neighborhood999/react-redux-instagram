@@ -1,10 +1,10 @@
-# react-redux Instagram
+# [DEPRECATED]react-redux Instagram
 
 [![Build Status](https://travis-ci.org/neighborhood999/react-redux-instagram.svg?branch=master)](https://travis-ci.org/neighborhood999/react-redux-instagram)
 [![Coverage Status](https://coveralls.io/repos/github/neighborhood999/react-redux-instagram/badge.svg?branch=master)](https://coveralls.io/github/neighborhood999/react-redux-instagram?branch=master)
 [![Dependency Status](https://david-dm.org/neighborhood999/react-redux-instagram.svg)](https://david-dm.org/neighborhood999/react-redux-instagram)
 
-Use react and redux build instagram.
+## Check out [nextjs-redux-instagram](https://github.com/neighborhood999/nextjs-redux-instagram).
 
 ## Usage
 
